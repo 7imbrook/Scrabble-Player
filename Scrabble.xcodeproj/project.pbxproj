@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A95D75841650921D0013843D /* dictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = A95D75831650921D0013843D /* dictionary.plist */; };
+		A95D75861651541B0013843D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95D75851651541B0013843D /* CoreFoundation.framework */; };
+		A95D758A165162A50013843D /* letterPoints.plist in Resources */ = {isa = PBXBuildFile; fileRef = A95D7589165162A50013843D /* letterPoints.plist */; };
 		A971A1D8164CEBFA00FC7A93 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A971A1D7164CEBF900FC7A93 /* Cocoa.framework */; };
 		A971A1E2164CEBFA00FC7A93 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A971A1E0164CEBFA00FC7A93 /* InfoPlist.strings */; };
 		A971A1E4164CEBFA00FC7A93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A971A1E3164CEBFA00FC7A93 /* main.m */; };
@@ -14,9 +17,14 @@
 		A971A1EB164CEBFA00FC7A93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A971A1EA164CEBFA00FC7A93 /* AppDelegate.m */; };
 		A971A1EE164CEBFA00FC7A93 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A971A1EC164CEBFA00FC7A93 /* MainMenu.xib */; };
 		A971A1F1164CEBFA00FC7A93 /* Scrabble.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A971A1EF164CEBFA00FC7A93 /* Scrabble.xcdatamodeld */; };
+		A9CF296C164DD19D00FDDAED /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9CF296B164DD19D00FDDAED /* MainView.m */; };
+		A9CF2978164DEC0A00FDDAED /* arrayLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9CF2977164DEC0A00FDDAED /* arrayLayout.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A95D75831650921D0013843D /* dictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dictionary.plist; sourceTree = "<group>"; };
+		A95D75851651541B0013843D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A95D7589165162A50013843D /* letterPoints.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = letterPoints.plist; sourceTree = "<group>"; };
 		A971A1D4164CEBF900FC7A93 /* Scrabble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrabble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A971A1D7164CEBF900FC7A93 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A971A1DA164CEBFA00FC7A93 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -31,6 +39,9 @@
 		A971A1EA164CEBFA00FC7A93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A971A1ED164CEBFA00FC7A93 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A971A1F0164CEBFA00FC7A93 /* Scrabble.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scrabble.xcdatamodel; sourceTree = "<group>"; };
+		A9CF296A164DD19D00FDDAED /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
+		A9CF296B164DD19D00FDDAED /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		A9CF2977164DEC0A00FDDAED /* arrayLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = arrayLayout.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95D75861651541B0013843D /* CoreFoundation.framework in Frameworks */,
 				A971A1D8164CEBFA00FC7A93 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +60,10 @@
 		A971A1CB164CEBF900FC7A93 = {
 			isa = PBXGroup;
 			children = (
+				A95D75851651541B0013843D /* CoreFoundation.framework */,
+				A95D7589165162A50013843D /* letterPoints.plist */,
+				A9CF2977164DEC0A00FDDAED /* arrayLayout.plist */,
+				A95D75831650921D0013843D /* dictionary.plist */,
 				A971A1DD164CEBFA00FC7A93 /* Scrabble */,
 				A971A1D6164CEBF900FC7A93 /* Frameworks */,
 				A971A1D5164CEBF900FC7A93 /* Products */,
@@ -87,6 +103,8 @@
 				A971A1E9164CEBFA00FC7A93 /* AppDelegate.h */,
 				A971A1EA164CEBFA00FC7A93 /* AppDelegate.m */,
 				A971A1EC164CEBFA00FC7A93 /* MainMenu.xib */,
+				A9CF296A164DD19D00FDDAED /* MainView.h */,
+				A9CF296B164DD19D00FDDAED /* MainView.m */,
 				A971A1EF164CEBFA00FC7A93 /* Scrabble.xcdatamodeld */,
 				A971A1DE164CEBFA00FC7A93 /* Supporting Files */,
 			);
@@ -159,6 +177,9 @@
 				A971A1E2164CEBFA00FC7A93 /* InfoPlist.strings in Resources */,
 				A971A1E8164CEBFA00FC7A93 /* Credits.rtf in Resources */,
 				A971A1EE164CEBFA00FC7A93 /* MainMenu.xib in Resources */,
+				A9CF2978164DEC0A00FDDAED /* arrayLayout.plist in Resources */,
+				A95D75841650921D0013843D /* dictionary.plist in Resources */,
+				A95D758A165162A50013843D /* letterPoints.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +193,7 @@
 				A971A1E4164CEBFA00FC7A93 /* main.m in Sources */,
 				A971A1EB164CEBFA00FC7A93 /* AppDelegate.m in Sources */,
 				A971A1F1164CEBFA00FC7A93 /* Scrabble.xcdatamodeld in Sources */,
+				A9CF296C164DD19D00FDDAED /* MainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +331,7 @@
 				A971A1F6164CEBFA00FC7A93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
