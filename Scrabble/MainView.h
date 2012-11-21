@@ -9,7 +9,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MainView : NSWindow
+
+- (IBAction)udateBoard:(id)sender;
 - (IBAction)actionMove:(id)sender;
 @property (weak) IBOutlet NSView *ViewBoard;
+@property (unsafe_unretained) IBOutlet NSTextView *console;
 
 @end

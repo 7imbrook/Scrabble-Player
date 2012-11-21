@@ -2,57 +2,57 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>a</key>
+	<key>A</key>
 	<integer>1</integer>
-	<key>b</key>
+	<key>B</key>
 	<integer>3</integer>
-	<key>c</key>
+	<key>C</key>
 	<integer>3</integer>
-	<key>d</key>
+	<key>D</key>
 	<integer>2</integer>
-	<key>e</key>
+	<key>E</key>
 	<integer>1</integer>
-	<key>f</key>
+	<key>F</key>
 	<integer>4</integer>
-	<key>g</key>
+	<key>G</key>
 	<integer>2</integer>
-	<key>h</key>
+	<key>H</key>
 	<integer>4</integer>
-	<key>i</key>
+	<key>I</key>
 	<integer>1</integer>
-	<key>j</key>
+	<key>J</key>
 	<integer>8</integer>
-	<key>k</key>
+	<key>K</key>
 	<integer>5</integer>
-	<key>l</key>
+	<key>L</key>
 	<integer>1</integer>
-	<key>m</key>
+	<key>M</key>
 	<integer>3</integer>
-	<key>n</key>
+	<key>N</key>
 	<integer>1</integer>
-	<key>o</key>
+	<key>O</key>
 	<integer>1</integer>
-	<key>p</key>
+	<key>P</key>
 	<integer>3</integer>
-	<key>q</key>
+	<key>Q</key>
 	<integer>10</integer>
-	<key>r</key>
+	<key>R</key>
 	<integer>1</integer>
-	<key>s</key>
+	<key>S</key>
 	<integer>1</integer>
-	<key>t</key>
+	<key>T</key>
 	<integer>1</integer>
-	<key>u</key>
+	<key>U</key>
 	<integer>1</integer>
-	<key>v</key>
+	<key>V</key>
 	<integer>4</integer>
-	<key>w</key>
+	<key>W</key>
 	<integer>4</integer>
-	<key>x</key>
+	<key>X</key>
 	<integer>8</integer>
-	<key>y</key>
+	<key>Y</key>
 	<integer>4</integer>
-	<key>z</key>
+	<key>Z</key>
 	<integer>10</integer>
 </dict>
 </plist>
