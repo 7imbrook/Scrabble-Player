@@ -56,22 +56,40 @@
     }
     Scrabble *comp = [[Scrabble alloc] initWithWordListAndLetterPoint:wordList LetterPoints:letterPoints];
     NSArray *allWords = [comp anagramArrayFromCharacterArray:newHand fixedChars:@[]];
-    int y = 0;
+    NSMutableArray *allSMTWords = [[NSMutableArray alloc] init];
     for (NSString *word in allWords){
         if ([self letter:letterAtCord isInWord:word]) {
             NSMutableArray *wordArray = [comp stringToArray:word];
-            int count = (int)[wordArray count];
             NSArray *hooks = [self getHooksFor:wordArray on:letterAtCord];
             for (NSNumber *hookIndex in hooks) {
                 if (![hookIndex isEqualTo:[[NSNumber alloc] initWithInt:-1]]) {
-                    NSLog(@"%@ : %@", hookIndex, word);
+                    int passed = 0;
+                    bool hasBlank = false;
+                    int total = (int)word.length;
+                    for (int i = 0; i < wordArray.count; i++) {
+                        int rowRef = i + row - [hookIndex intValue];
+                        if ([[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:[wordArray objectAtIndex:i]] || [[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:@""]) {
+                            if ([[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:@""]) {
+                                passed++;
+                                hasBlank = true;
+                            } else {
+                                passed++;
+                            }
+                        }
+                        if (i == wordArray.count - 1) {
+                            if (passed == total && hasBlank) {
+                                if ([[[[Board objectAtIndex:rowRef+1] objectAtIndex:col] stringValue] isEqualToString:@""]) {
+                                    NSLog(@"Passed: %@", word);
+                                    SMTWord *tmp = [[SMTWord alloc] initWithWord:word row:(row - [hookIndex intValue]) column:col isHorizonal:false];
+                                    [allSMTWords addObject:tmp];
+                                }
+                            } 
+                        }
+                    }
                 }
             }
-        
-        
         }
     }
-    
     //                          TO-DO                           //
     // First check if/where they fit                         [] //
     // Second make SMTWord with value and ajusted cordinates [] //
