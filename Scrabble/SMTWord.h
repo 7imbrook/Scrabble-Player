@@ -13,6 +13,15 @@
 /**
  Creates a SMTWord object with a row, column and word string
  */
-- (id) initWithWord:(NSString *)wordRef row:(int)rowRef column:(int)columnRef;
+- (id) initWithWord:(NSString *)wordRef row:(int)rowRef column:(int)columnRef isHorizonal:(bool)horRef;
+
+/**
+ Public vars
+ */
+@property NSNumber *row;
+@property NSNumber *column;
+@property NSString *word;
+@property NSNumber *pointValue;
+@property bool hor;
 
 @end

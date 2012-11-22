@@ -17,10 +17,11 @@
 		A971A1EB164CEBFA00FC7A93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A971A1EA164CEBFA00FC7A93 /* AppDelegate.m */; };
 		A971A1EE164CEBFA00FC7A93 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A971A1EC164CEBFA00FC7A93 /* MainMenu.xib */; };
 		A971A1F1164CEBFA00FC7A93 /* Scrabble.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A971A1EF164CEBFA00FC7A93 /* Scrabble.xcdatamodeld */; };
-		A9996BF516536AF400CD5885 /* Scrabble.m in Sources */ = {isa = PBXBuildFile; fileRef = A9996BF416536AF400CD5885 /* Scrabble.m */; };
 		A9CF296C164DD19D00FDDAED /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9CF296B164DD19D00FDDAED /* MainView.m */; };
 		A9CF2978164DEC0A00FDDAED /* arrayLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9CF2977164DEC0A00FDDAED /* arrayLayout.plist */; };
 		A9E323F0165AAF1F00AD5B41 /* SMTWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E323EF165AAF1F00AD5B41 /* SMTWord.m */; };
+		A9E323F3165D610600AD5B41 /* Scrabble.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E323F1165D610500AD5B41 /* Scrabble.m */; };
+		A9E323F6165D61E600AD5B41 /* GADDAG.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E323F5165D61E600AD5B41 /* GADDAG.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,13 +42,15 @@
 		A971A1EA164CEBFA00FC7A93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A971A1ED164CEBFA00FC7A93 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A971A1F0164CEBFA00FC7A93 /* Scrabble.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scrabble.xcdatamodel; sourceTree = "<group>"; };
-		A9996BF316536AF400CD5885 /* Scrabble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scrabble.h; sourceTree = "<group>"; };
-		A9996BF416536AF400CD5885 /* Scrabble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scrabble.m; sourceTree = "<group>"; };
 		A9CF296A164DD19D00FDDAED /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		A9CF296B164DD19D00FDDAED /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		A9CF2977164DEC0A00FDDAED /* arrayLayout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = arrayLayout.plist; sourceTree = "<group>"; };
 		A9E323EE165AAF1F00AD5B41 /* SMTWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTWord.h; sourceTree = "<group>"; };
 		A9E323EF165AAF1F00AD5B41 /* SMTWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTWord.m; sourceTree = "<group>"; };
+		A9E323F1165D610500AD5B41 /* Scrabble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scrabble.m; sourceTree = "<group>"; };
+		A9E323F2165D610500AD5B41 /* Scrabble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scrabble.h; sourceTree = "<group>"; };
+		A9E323F4165D61E600AD5B41 /* GADDAG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADDAG.h; sourceTree = "<group>"; };
+		A9E323F5165D61E600AD5B41 /* GADDAG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADDAG.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,10 +114,12 @@
 				A971A1EC164CEBFA00FC7A93 /* MainMenu.xib */,
 				A9CF296A164DD19D00FDDAED /* MainView.h */,
 				A9CF296B164DD19D00FDDAED /* MainView.m */,
+				A9E323F4165D61E600AD5B41 /* GADDAG.h */,
+				A9E323F5165D61E600AD5B41 /* GADDAG.m */,
+				A9E323F2165D610500AD5B41 /* Scrabble.h */,
+				A9E323F1165D610500AD5B41 /* Scrabble.m */,
 				A9E323EE165AAF1F00AD5B41 /* SMTWord.h */,
 				A9E323EF165AAF1F00AD5B41 /* SMTWord.m */,
-				A9996BF316536AF400CD5885 /* Scrabble.h */,
-				A9996BF416536AF400CD5885 /* Scrabble.m */,
 				A971A1EF164CEBFA00FC7A93 /* Scrabble.xcdatamodeld */,
 				A971A1DE164CEBFA00FC7A93 /* Supporting Files */,
 			);
@@ -204,8 +209,9 @@
 				A971A1EB164CEBFA00FC7A93 /* AppDelegate.m in Sources */,
 				A971A1F1164CEBFA00FC7A93 /* Scrabble.xcdatamodeld in Sources */,
 				A9CF296C164DD19D00FDDAED /* MainView.m in Sources */,
-				A9996BF516536AF400CD5885 /* Scrabble.m in Sources */,
 				A9E323F0165AAF1F00AD5B41 /* SMTWord.m in Sources */,
+				A9E323F3165D610600AD5B41 /* Scrabble.m in Sources */,
+				A9E323F6165D61E600AD5B41 /* GADDAG.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "MainView.h"
 #import "Scrabble.h"
 #import "SMTWord.h"
+#import "GADDAG.h"
 #import <Foundation/Foundation.h>
 
 @implementation MainView {
@@ -154,7 +155,10 @@
         }
         if (![test isEqualToString:@""]) {
             inhand = test;
-            [self scanBoard];
+            Scrabble *comp = [[Scrabble alloc] init];
+            GADDAG *test = [[GADDAG alloc] initWithBoard:Board hand:[comp stringToArray:inhand]];
+            [test bestMove];
+            
         } else {
             NSLog(@"No values");
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -162,93 +166,6 @@
             }];
         }
     }];
-}
-
-- (void) scanBoard {
-    /**
-     Generates all the scanning blocks that are then sent to the correct opperation queue.
-     */
-	for (int i = 0; i < 225; i++) {
-        int col = i - (i/15 * 15);
-        int row = i/15;
-        if (![[[[Board objectAtIndex:row] objectAtIndex:col] stringValue] isEqualToString:@""]) {
-            if (row > 0 && row < 14) {
-                if ([[[[Board objectAtIndex:row - 1] objectAtIndex:col] stringValue] isEqualToString:@""]) {
-                    [queueScanDown addOperationWithBlock:^{[self scanDownWithRow:row column:col];}];
-                    [queueScanUp addOperationWithBlock:^{[self scanUpWithRow:row column:col];}];
-                }
-            } else if (row > 0) {
-                [queueScanUp addOperationWithBlock:^{[self scanUpWithRow:row column:col];}];
-            } else if (row < 14){
-                [queueScanDown addOperationWithBlock:^{[self scanDownWithRow:row column:col];}];
-            }
-        }
-    }
-}
-
-- (void)scanDownWithRow:(int)row column:(int)column{
-    /**
-     Checks for words that are below a certain character accounting for any characters that are in the way.
-     */
-    Scrabble *scrb = [[Scrabble alloc] initWithWordListAndLetterPoint:wordList LetterPoints:letterPoints];
-    NSMutableArray *fixedMutable = [[NSMutableArray alloc] init];
-    int i = row;
-    while (i < 15) {
-        if (![[[[Board objectAtIndex:i] objectAtIndex:column] stringValue] isEqualToString:@""]) {
-            [fixedMutable addObject:[[[Board objectAtIndex:i] objectAtIndex:column] stringValue]];
-        } else {
-            [fixedMutable addObject:@"none"];
-        }
-        i++;
-    }
-    NSArray *fixed = fixedMutable;
-    NSArray *allValues = [scrb anagramArrayFromCharacterArray:[scrb stringToArray:inhand] fixedChars:fixed];
-    NSMutableDictionary *allValuesWithPoints = [scrb dictionaryFromArrayWithPointValues:allValues];
-    NSArray *bestValue = [scrb getBestFromDictionary:allValuesWithPoints];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        @try {
-            [self write:[[NSString alloc] initWithFormat:@"Best if below (%d,%d) is %@ [%@]", row, column, [bestValue objectAtIndex:0], [bestValue objectAtIndex:1]]];
-        }
-        @catch (NSException *e) {
-            // Means no Value, therefor no need to catch anything
-        }
-    }];
-}
-
-- (void)scanUpWithRow:(int)row column:(int)column {
-    /**
-     will generate all options above a letter
-     */
-    NSOperationQueue *scanUp = [[NSOperationQueue alloc] init];
-    NSMutableArray *fixedMutable = [[NSMutableArray alloc] init];
-    for (int i = 0; i <= row; i++){
-        if([[[[Board objectAtIndex:i] objectAtIndex:column] stringValue] isEqualTo:@""]){
-            [fixedMutable addObject:@"none"];
-        } else {
-            [fixedMutable addObject:[[[Board objectAtIndex:i] objectAtIndex:column] stringValue]];
-        }
-    }
-    Scrabble *scrb = [[Scrabble alloc] initWithWordListAndLetterPoint:wordList LetterPoints:letterPoints];
-    [scanUp addOperationWithBlock:^{
-        NSMutableArray *words = [[NSMutableArray alloc] init];
-        NSArray *values = [scrb anagramArrayFromCharacterArray:[scrb stringToArray:inhand] fixedChars:fixedMutable];
-        for (NSString *str in values) {
-            SMTWord *word = [[SMTWord alloc] initWithWord:str row:row column:column];
-            [words addObject:word];
-            NSLog(@"%@", words);
-        }
-    }];
-    for (int i = 0; i < fixedMutable.count - 1; i ++){
-        [fixedMutable removeObjectAtIndex:0];
-        [scanUp addOperationWithBlock:^{
-            NSMutableArray *words = [[NSMutableArray alloc] init];
-            NSArray *values = [scrb anagramArrayFromCharacterArray:[scrb stringToArray:inhand] fixedChars:fixedMutable];
-            for (NSString *str in values) {
-                SMTWord *word = [[SMTWord alloc] initWithWord:str row:row column:column];
-                [words addObject:word];
-            }
-        }];
-    }
 }
 
 - (void) write:(NSString *)msg {
