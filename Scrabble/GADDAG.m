@@ -39,6 +39,10 @@
 }
 
 - (SMTWord *)bestMove{
+    /**
+     Scans Board and distributes blocks where cell has a value.
+     */
+    // Testing Code
     [self findInColumn:7 atRow:7];
     return nil;
 }
@@ -68,7 +72,7 @@
                     int total = (int)word.length;
                     for (int i = 0; i < wordArray.count; i++) {
                         int rowRef = i + row - [hookIndex intValue];
-                        if ([[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:[wordArray objectAtIndex:i]] || [[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:@""]) {
+                        if ([[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:[wordArray objectAtIndex:i]] || ([[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:@""] && [self checkRowWithValue:[wordArray objectAtIndex:i] atRow:rowRef atCol:col])) {
                             if ([[[[Board objectAtIndex:rowRef] objectAtIndex:col] stringValue] isEqualToString:@""]) {
                                 passed++;
                                 hasBlank = true;
@@ -79,7 +83,6 @@
                         if (i == wordArray.count - 1) {
                             if (passed == total && hasBlank) {
                                 if ([[[[Board objectAtIndex:rowRef+1] objectAtIndex:col] stringValue] isEqualToString:@""]) {
-                                    NSLog(@"Passed: %@", word);
                                     SMTWord *tmp = [[SMTWord alloc] initWithWord:word row:(row - [hookIndex intValue]) column:col isHorizonal:false];
                                     [allSMTWords addObject:tmp];
                                 }
@@ -90,13 +93,11 @@
             }
         }
     }
-    //                          TO-DO                           //
-    // First check if/where they fit                         [] //
-    // Second make SMTWord with value and ajusted cordinates [] //
-    // Third return the SMTWord with the highest .pointValue [] //
-    
-    
-    
+    // Print out words
+    NSLog(@"Done");
+    for (SMTWord *word in allSMTWords) {
+        NSLog(@"%@ %@ points (%@,%@)", word.word, word.pointValue, word.row, word.column);
+    }
     return nil;
 }
 
@@ -130,5 +131,63 @@
     }
     return returnValue;
 }
+
+- (bool)checkRowWithValue:(NSString *)letter atRow:(int)row atCol:(int)col{
+    if ([[[[Board objectAtIndex:row] objectAtIndex:col - 1] stringValue] isEqualToString:@""] && [[[[Board objectAtIndex:row] objectAtIndex:col + 1] stringValue] isEqualToString:@""]) {
+        // If both are blank
+        return true;
+    } else if ([[[[Board objectAtIndex:row] objectAtIndex:col - 1] stringValue] isEqualToString:@""] && ![[[[Board objectAtIndex:row] objectAtIndex:col + 1] stringValue] isEqualToString:@""]){
+        // Only left is blank
+        NSString *word = letter;
+        int i = 1;
+        while ([[[[Board objectAtIndex:row] objectAtIndex:col + i] stringValue] isEqualToString:@""]){
+            word = [word stringByAppendingString:[[[Board objectAtIndex:row] objectAtIndex:col - i] stringValue]];
+            i++;
+        }
+        return [self isWordInDictionary:word];
+    } else if (![[[[Board objectAtIndex:row] objectAtIndex:col - 1] stringValue] isEqualToString:@""] && [[[[Board objectAtIndex:row] objectAtIndex:col + 1] stringValue] isEqualToString:@""]){
+        // Only right is blank
+        NSString *word = letter;
+        int i = 1;
+        while ([[[[Board objectAtIndex:row] objectAtIndex:col - i] stringValue] isEqualToString:@""]) {
+            word = [[NSString alloc] initWithFormat:@"%@%@", [[[Board objectAtIndex:row] objectAtIndex:col - i] stringValue], word];
+            i++;
+        }
+        return [self isWordInDictionary:word];
+    } else if (![[[[Board objectAtIndex:row] objectAtIndex:col - 1] stringValue] isEqualToString:@""] && ![[[[Board objectAtIndex:row] objectAtIndex:col + 1] stringValue] isEqualToString:@""]){
+        // Both are not blank
+        NSString *letter = @"";
+        int i = 1;
+        // Left Side
+        NSString *left = @"";
+        while ([[[[Board objectAtIndex:row] objectAtIndex:col + i] stringValue] isEqualToString:@""]){
+            left = [left stringByAppendingString:[[[Board objectAtIndex:row] objectAtIndex:col - i] stringValue]];
+            i++;
+        }
+        // Right Side
+        NSString *right = @"";
+        i = 0;
+        while ([[[[Board objectAtIndex:row] objectAtIndex:col - i] stringValue] isEqualToString:@""]) {
+            right = [[NSString alloc] initWithFormat:@"%@%@", [[[Board objectAtIndex:row] objectAtIndex:col - i] stringValue], right];
+            i++;
+        }
+        NSString *word = [[NSString alloc] initWithFormat:@"%@%@%@", left, letter, right];
+        return [self isWordInDictionary:word];
+    }
+
+    return nil;
+}
+
+- (bool)isWordInDictionary:(NSString *)word{
+    bool isWord = false;
+    for (NSString *dic in wordList){
+        if([word isEqualToString:dic]){
+            isWord = true;
+            break;
+        }
+    }
+    return isWord;
+}
+
 
 @end
