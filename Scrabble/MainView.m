@@ -18,9 +18,6 @@
 @private NSArray *wordList;
 @private NSMutableArray *Board;
 @private NSDictionary *letterPoints;
-@private NSOperationQueue *queue1;
-@private NSOperationQueue *queueScanDown;
-@private NSOperationQueue *queueScanUp;
 @private NSString *inhand;
     
 }
@@ -51,10 +48,6 @@
     wordList = [[NSArray alloc] initWithContentsOfFile:@"/Users/timbrook480/Projects/Scrabble/dictionary.plist"];
     letterPoints = [[NSDictionary alloc] initWithContentsOfFile:@"/Users/timbrook480/Projects/Scrabble/letterPoints.plist"];
     [self loadBoard];
-    // ++ init queues ++
-    queue1 = [[NSOperationQueue alloc] init];
-    queueScanDown = [[NSOperationQueue alloc] init];
-    queueScanUp = [[NSOperationQueue alloc] init];
     [self write:@"Loaded"];
 }
 
@@ -68,20 +61,20 @@
      */
     Scrabble *scrb = [[Scrabble alloc] initWithWordListAndLetterPoint:wordList LetterPoints:letterPoints];
     NSArray *word = [scrb stringToArray:wordRef];
-    NSColor *bg = [NSColor colorWithSRGBRed:0 green:0 blue:255 alpha:.5];
+    //NSColor *bg = [NSColor colorWithSRGBRed:0 green:0 blue:255 alpha:.5];
     if(hor){
         for (int i = 0; i < word.count; i++) {
             NSTextField *tmp = [[Board objectAtIndex:r] objectAtIndex:(i + c)];
             [tmp.cell setStringValue:[word objectAtIndex:i]];
-            [tmp.cell setEditable:false];
-            [tmp.cell setBackgroundColor:bg];
+            //[tmp.cell setEditable:false];
+            //[tmp.cell setBackgroundColor:bg];
         }
     } else {
         for (int i = 0; i < word.count; i++) {
             NSTextField *tmp = [[Board objectAtIndex:(i + r)] objectAtIndex:c];
             [tmp.cell setStringValue:[word objectAtIndex:i]];
-            [tmp.cell setEditable:false];
-            [tmp.cell setBackgroundColor:bg];
+            //[tmp.cell setEditable:false];
+            //[tmp.cell setBackgroundColor:bg];
         }
     }
 }
@@ -144,28 +137,26 @@
      */
     [self readFromBoard];
     [self write:@"Calculating your best move..."];
-    [queue1 addOperationWithBlock:^{
-        //Get Avaliable Letters
-        NSArray *item = _ViewBoard.subviews;
-        NSString *test = @"";
-        for (int i = 225; i <=231; i++) {
-            NSTextField *tmp = [item objectAtIndex:i];
-            NSString *addstr = [tmp stringValue];
-            test = [test stringByAppendingString:addstr];
-        }
-        if (![test isEqualToString:@""]) {
-            inhand = test;
-            Scrabble *comp = [[Scrabble alloc] init];
-            GADDAG *test = [[GADDAG alloc] initWithBoard:Board hand:[comp stringToArray:inhand]];
-            [test bestMove];
-            
-        } else {
-            NSLog(@"No values");
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self write:@"No Values"];
-            }];
-        }
-    }];
+    //Get Avaliable Letters
+    NSArray *item = _ViewBoard.subviews;
+    NSString *test = @"";
+    for (int i = 225; i <=231; i++) {
+        NSTextField *tmp = [item objectAtIndex:i];
+        NSString *addstr = [tmp stringValue];
+        test = [test stringByAppendingString:addstr];
+    }
+    if (![test isEqualToString:@""]) {
+        inhand = test;
+        Scrabble *comp = [[Scrabble alloc] init];
+        GADDAG *test = [[GADDAG alloc] initWithBoard:Board hand:[comp stringToArray:inhand]];
+        SMTWord *best = [test bestMove];
+        [self writeToBoard:best.word atRow:[best.row intValue] inColumn:[best.column intValue] isHorizonial:best.hor];
+        NSString *output = [[NSString alloc] initWithFormat:@"Best Word\n\t%@\nPoints %@\nLoc Row %@, Col %@\n%@", best.word, best.pointValue, best.row, best.column, best.hor ? @"Left->Right" : @"Up->Down"];
+        [self write:output];
+    } else {
+        NSLog(@"No values");
+        [self write:@"No Values"];
+    }
 }
 
 - (void) write:(NSString *)msg {

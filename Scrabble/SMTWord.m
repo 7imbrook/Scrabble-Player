@@ -52,6 +52,7 @@
             [[boardWithModifiers objectAtIndex:i/15] addObject:[modifierLayout objectAtIndex:i]];
         }
         pointValue = [self pointValueFromString:word];
+        NSLog(@"%@ (%d, %d) %d", word, row.intValue, column.intValue, pointValue.intValue);
     }
     return self;
 }
@@ -72,8 +73,7 @@
     int multiplyer = 1;
     if (hor) {
         for (NSString *l in array){
-            NSLog(@"%@:%d", row, (location + [column intValue]));
-            NSString *cellIdentifier = [[boardWithModifiers objectAtIndex:row.intValue] objectAtIndex:column.intValue+location];
+            NSString *cellIdentifier = [[boardWithModifiers objectAtIndex:row.intValue] objectAtIndex:column.intValue + location];
             /**
              D = Double Word
              T = Triple Word
@@ -97,7 +97,7 @@
         }
     } else {
         for (NSString *l in array){
-            NSString *cellIdentifier = [[boardWithModifiers objectAtIndex:row.intValue] objectAtIndex:column.intValue+location];
+            NSString *cellIdentifier = [[boardWithModifiers objectAtIndex:row.intValue + location] objectAtIndex:column.intValue];
             /**
              D = Double Word
              T = Triple Word
