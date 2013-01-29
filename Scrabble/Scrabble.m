@@ -133,7 +133,7 @@
     NSMutableArray *chars = [[NSMutableArray alloc] init];
     for(int index = 0; index<=[str length]-1; index++){
         NSString *testStr = [NSString stringWithFormat:@"%c", [str characterAtIndex:index]];
-        [chars addObject:testStr];
+[chars addObject:testStr];
     }
     return chars;
 }
